@@ -4,16 +4,29 @@ using NUnit.Framework;
 
 namespace Wimicrogrid
 {
+    public class ApplianceState
+    {
+        public const bool On = true;
+        public const bool Off = false;
+    }
+
     public class Appliance
     {
-        public Appliance(Clock clock, Rating rating)
+        public bool On { get; private set; }
+        private readonly Clock _clock;
+        private readonly Rating _rating;
+
+        public Appliance(Clock clock, Rating rating, bool on)
         {
-            
+            On = on;
+
+            _clock = clock;
+            _rating = rating;
         }
 
         public double Usage 
         {
-            get { return 1.0; }
+            get { return On ? 1.0 : 0.0; }
         }
     }
 
@@ -26,11 +39,24 @@ namespace Wimicrogrid
             var initial = DateTime.Parse("1 APR 2014");
             var clock = new Clock(initial, new TimeSpan(1, 0, 0));
             var rating = new Rating(2);
-            var appliance = new Appliance(clock, rating);
+            var appliance = new Appliance(clock, rating, ApplianceState.On);
 
             clock.Tick();
 
             Assert.That(appliance.Usage, Is.GreaterThan(Consumption.None));
+        }
+
+        [Test]
+        public void Should_consume_no_power_when_switched_off()
+        {
+            var initial = DateTime.Parse("1 APR 2014");
+            var clock = new Clock(initial, new TimeSpan(1, 0, 0));
+            var rating = new Rating(2);
+            var appliance = new Appliance(clock, rating, ApplianceState.Off);
+
+            clock.Tick();
+
+            Assert.That(appliance.Usage, Is.EqualTo(Consumption.None));
         }
     }
 
