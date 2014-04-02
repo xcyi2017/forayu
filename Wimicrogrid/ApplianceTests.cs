@@ -29,6 +29,28 @@ namespace Wimicrogrid
 
             Assert.That(household1.Usage, Is.GreaterThan(household2.Usage));
         }
+
+        [Test]
+        public void Should_consume_no_power_when_all_appliances_are_switched_off()
+        {
+            var anHour = new TimeSpan(1, 0, 0);
+            var clock = new Clock(anHour);
+            var television = new Appliance(clock, new Rating(3), ApplianceState.Off);
+            var kettle = new Appliance(clock, new Rating(1), ApplianceState.Off);
+            var radio = new Appliance(clock, new Rating(1), ApplianceState.Off);
+            var initialAppliances = new List<Appliance> { television };
+
+            var household1 = new Household(initialAppliances);
+            clock.Tick();
+
+            household1.AddAppliance(radio);
+            clock.Tick();
+
+            household1.AddAppliance(kettle);
+            clock.Tick();
+
+            Assert.That(household1.Usage, Is.EqualTo(Consumption.None));
+        }
     }
 
     public class Household
