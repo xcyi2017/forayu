@@ -11,7 +11,7 @@ namespace Wimicrogrid
         public TimeSpan TickSize { get; private set; }
         public event TickHandler Ticked;
 
-        public delegate void TickHandler(TimeSpan duration, EventArgs e);
+        public delegate void TickHandler(TimeSpan duration);
 
         public Clock(TimeSpan tickSize)
         {
@@ -33,7 +33,7 @@ namespace Wimicrogrid
 
             if (Ticked == null) return;
             
-            Ticked(TickSize, new EventArgs());
+            Ticked(TickSize);
         }
     }
 }
