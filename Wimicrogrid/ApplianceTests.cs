@@ -31,7 +31,7 @@ namespace Wimicrogrid
         }
 
         [Test]
-        public void Should_consume_power_only_when_switched_on()
+        public void Should_consume_power_over_time_when_switched_on_once()
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var durationOn = new TimeSpan(1, 0, 0);
@@ -44,5 +44,35 @@ namespace Wimicrogrid
 
             Assert.That(appliance.Usage, Is.EqualTo(new Consumption(durationOn, rating).Amount));
         }
+
+        [Test]
+        public void Should_consume_no_power_over_time_whilst_switched_off()
+        {
+            var clock = new Clock(new TimeSpan(1, 0, 0));
+            var rating = new Rating(2);
+
+            var appliance = new Appliance(clock, rating, ApplianceState.Off);
+            clock.Tick();
+            clock.Tick();
+            clock.Tick();
+
+            Assert.That(appliance.Usage, Is.EqualTo(Consumption.None));
+        }
+
+        [Test]
+        public void Should_consuming_power_only_whilst_switched_on()
+        {
+            var clock = new Clock(new TimeSpan(1, 0, 0));
+            var rating = new Rating(2);
+
+            var appliance = new Appliance(clock, rating, ApplianceState.Off); clock.Tick();
+            appliance.SwitchOn(); clock.Tick();
+            appliance.SwitchOff(); clock.Tick();
+            appliance.SwitchOn(); clock.Tick();
+            appliance.SwitchOff(); clock.Tick();
+
+            Assert.That(appliance.Usage, Is.EqualTo(new Consumption(new TimeSpan(0,2,0,0), rating).Amount));
+        }
+
     }
 }
