@@ -16,7 +16,7 @@ namespace Wimicrogrid
             clock.Ticked += UpdateUsage; 
         }
 
-        private void UpdateUsage(TimeSpan duration, EventArgs e)
+        private void UpdateUsage(TimeSpan duration)
         {
             if (On) _usage += new Consumption(duration, _rating).Amount;
         }
@@ -28,7 +28,12 @@ namespace Wimicrogrid
 
         public void SwitchOn()
         {
-            On = true;
+            On = ApplianceState.On;
+        }
+
+        public void SwitchOff()
+        {
+            On = ApplianceState.Off;
         }
     }
 }
