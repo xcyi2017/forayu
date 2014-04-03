@@ -12,7 +12,7 @@ namespace Wimicrogrid
 
             while (Households.Count < houses)
             {
-                Households.Add(new Household(defaultAppliances, clock));
+                Households.Add(new Household(Households.Count, defaultAppliances, clock));
             }
         }
 

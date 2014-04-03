@@ -6,9 +6,11 @@ namespace Wimicrogrid
     public class Household
     {
         private readonly Appliances _appliances;
+        private readonly int _id;
 
-        public Household(IEnumerable<Appliance> appliances, Clock clock)
+        public Household(int communityHouseCount, IEnumerable<Appliance> appliances, Clock clock)
         {
+            _id = ++communityHouseCount;
             _appliances = new Appliances(clock);
 
             foreach (var appliance in appliances)
@@ -17,6 +19,10 @@ namespace Wimicrogrid
             }
         }
 
+        public int Id
+        {
+            get { return _id; }
+        }
         public double Usage
         {
             get {  return _appliances.Sum(appliance => appliance.Usage); }

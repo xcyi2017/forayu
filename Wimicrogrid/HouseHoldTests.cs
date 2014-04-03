@@ -7,6 +7,11 @@ namespace Wimicrogrid
     [TestFixture]
     public class HouseHoldTests
     {
+        private static class FakeCommunity
+        {
+            public const int Empty = 0;
+        }
+
         [Test]
         public void Should_consume_more_power_when_another_appliance_switched_on_is_added()
         {
@@ -16,8 +21,8 @@ namespace Wimicrogrid
             var radio = new Appliance(ApplianceType.RADIO, clock, new Rating(1), ApplianceState.On);
             var initialAppliances = new List<Appliance> {television};
 
-            var household1 = new Household(initialAppliances, clock);
-            var household2 = new Household(initialAppliances, clock);
+            var household1 = new Household(FakeCommunity.Empty, initialAppliances, clock);
+            var household2 = new Household(FakeCommunity.Empty, initialAppliances, clock);
 
             clock.Tick();
 
@@ -38,7 +43,7 @@ namespace Wimicrogrid
             var radio = new Appliance(ApplianceType.RADIO, clock, new Rating(1));
             var initialAppliances = new List<Appliance> { television };
 
-            var household1 = new Household(initialAppliances, clock);
+            var household1 = new Household(FakeCommunity.Empty, initialAppliances, clock);
             clock.Tick();
 
             household1.AddAppliance(radio);
