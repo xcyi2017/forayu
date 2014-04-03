@@ -18,10 +18,10 @@ namespace Wimicrogrid
 
     public class Appliances : List<Appliance>
     {
-        private readonly Clock _clock;
+        private readonly ITime _clock;
 
 
-        public Appliances(Clock clock)
+        public Appliances(ITime clock)
         {
             _clock = clock;
         }
@@ -60,7 +60,7 @@ namespace Wimicrogrid
         private readonly Rating _rating;
         private double _usage;
 
-        public Appliance(ApplianceType type, Clock clock, Rating rating, bool isApplianceOn = ApplianceState.Off)
+        public Appliance(ApplianceType type, ITime clock, Rating rating, bool isApplianceOn = ApplianceState.Off)
         {
             On = isApplianceOn;
 

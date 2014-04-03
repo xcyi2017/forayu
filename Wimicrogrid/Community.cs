@@ -5,7 +5,7 @@ namespace Wimicrogrid
 {
     public class Community
     {
-        public Community(int houses, Clock clock)
+        public Community(int houses, ITime clock)
         {
             Households = new List<Household>();
             var defaultAppliances = new Appliances(clock).Default.ToList();

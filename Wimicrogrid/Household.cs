@@ -8,7 +8,7 @@ namespace Wimicrogrid
         private readonly Appliances _appliances;
         private readonly int _id;
 
-        public Household(int communityHouseCount, IEnumerable<Appliance> appliances, Clock clock)
+        public Household(int communityHouseCount, IEnumerable<Appliance> appliances, ITime clock)
         {
             _id = ++communityHouseCount;
             _appliances = new Appliances(clock);

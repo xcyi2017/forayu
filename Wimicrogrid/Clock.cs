@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Wimicrogrid
 {
-    public class Clock
+    public class Clock : ITime
     {
         private readonly List<Tick> _ticks = new List<Tick>();
 
