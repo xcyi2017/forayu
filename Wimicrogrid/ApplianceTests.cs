@@ -11,7 +11,7 @@ namespace Wimicrogrid
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var rating = new Rating(2);
-            var appliance = new Appliance(clock, rating, ApplianceState.On);
+            var appliance = new Appliance(ApplianceType.LED_BULB, clock, rating, ApplianceState.On);
 
             clock.Tick();
 
@@ -23,7 +23,7 @@ namespace Wimicrogrid
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var rating = new Rating(2);
-            var appliance = new Appliance(clock, rating, ApplianceState.Off);
+            var appliance = new Appliance(ApplianceType.LED_BULB, clock, rating);
 
             clock.Tick();
 
@@ -35,9 +35,9 @@ namespace Wimicrogrid
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var durationOn = new TimeSpan(1, 0, 0);
-            var rating = new Rating(2);
-            
-            var appliance = new Appliance(clock, rating, ApplianceState.Off);
+            var rating = new Rating(8);
+
+            var appliance = new Appliance(ApplianceType.TV, clock, rating);
             clock.Tick();
             appliance.SwitchOn();
             clock.Tick();
@@ -49,9 +49,9 @@ namespace Wimicrogrid
         public void Should_consume_no_power_over_time_whilst_switched_off()
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
-            var rating = new Rating(2);
+            var rating = new Rating(4);
 
-            var appliance = new Appliance(clock, rating, ApplianceState.Off);
+            var appliance = new Appliance(ApplianceType.RADIO, clock, rating);
             clock.Tick();
             clock.Tick();
             clock.Tick();
@@ -63,9 +63,9 @@ namespace Wimicrogrid
         public void Should_consuming_power_only_whilst_switched_on()
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
-            var rating = new Rating(2);
+            var rating = new Rating(15);
 
-            var appliance = new Appliance(clock, rating, ApplianceState.Off); clock.Tick();
+            var appliance = new Appliance(ApplianceType.WASHING_MACHINE, clock, rating); clock.Tick();
             appliance.SwitchOn(); clock.Tick();
             appliance.SwitchOff(); clock.Tick();
             appliance.SwitchOn(); clock.Tick();
