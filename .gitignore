@@ -2,4 +2,4 @@ packages
 **/bin
 **/obj
 *.suo
-*.ncrunch*
+*ncrunch*
