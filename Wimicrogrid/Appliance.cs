@@ -1,25 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Wimicrogrid
 {
     public enum ApplianceType {
-        LED_BULB,
-        CFL_BULB,
-        INCANDESCENT_BULB,
-        RADIO,
+        LED_bulb,
+        CFL_bulb,
+        Incandescent_bulb,
+        Radio,
         TV,
-        COMPUTER,
-        FRIDGE,
-        WASHING_MACHINE,
-        PHONE_CHARGER,
-        KETTLE
+        Computer,
+        Fridge,
+        Washing_machine,
+        Phone_charger,
+        Kettle
+    }
+
+    public static class ApplianceFactory
+    {
+        public static IEnumerable<RatedAppliance> GetAppliances()
+        {
+            yield return new RatedAppliance(ApplianceType.LED_bulb, new Rating(1));
+            yield return new RatedAppliance(ApplianceType.CFL_bulb, new Rating(2));
+            yield return new RatedAppliance(ApplianceType.Incandescent_bulb, new Rating(4));
+            yield return new RatedAppliance(ApplianceType.Radio, new Rating(8));
+            yield return new RatedAppliance(ApplianceType.TV, new Rating(16));
+            yield return new RatedAppliance(ApplianceType.Computer, new Rating(16));
+            yield return new RatedAppliance(ApplianceType.Fridge, new Rating(16));
+            yield return new RatedAppliance(ApplianceType.Washing_machine, new Rating(128));
+            yield return new RatedAppliance(ApplianceType.Phone_charger, new Rating(4));
+            yield return new RatedAppliance(ApplianceType.Kettle, new Rating(8));
+        }
+    }
+
+    public class RatedAppliance
+    {
+        public ApplianceType ApplianceType { get; private set; }
+        public Rating Rating { get; private set; }
+
+        public RatedAppliance(ApplianceType applianceType, Rating rating)
+        {
+            ApplianceType = applianceType;
+            Rating = rating;
+        }
     }
 
     public class Appliances : List<Appliance>
     {
         private readonly ITime _clock;
-
 
         public Appliances(ITime clock)
         {
@@ -30,16 +59,24 @@ namespace Wimicrogrid
         {
             get
             {
-                yield return new Appliance(ApplianceType.LED_BULB, _clock, new Rating(1));
-                yield return new Appliance(ApplianceType.CFL_BULB, _clock, new Rating(2));
-                yield return new Appliance(ApplianceType.INCANDESCENT_BULB, _clock, new Rating(2));
-                yield return new Appliance(ApplianceType.RADIO, _clock, new Rating(4));
-                yield return new Appliance(ApplianceType.TV, _clock, new Rating(10));
-                yield return new Appliance(ApplianceType.COMPUTER, _clock, new Rating(8));
-                yield return new Appliance(ApplianceType.FRIDGE, _clock, new Rating(5));
-                yield return new Appliance(ApplianceType.WASHING_MACHINE, _clock, new Rating(15));
-                yield return new Appliance(ApplianceType.PHONE_CHARGER, _clock, new Rating(3));
+                yield return FromAppliances(ApplianceType.Incandescent_bulb);
+                yield return FromAppliances(ApplianceType.Radio);
+                yield return FromAppliances(ApplianceType.LED_bulb);
+                yield return FromAppliances(ApplianceType.LED_bulb);
+                yield return FromAppliances(ApplianceType.TV);
+                yield return FromAppliances(ApplianceType.Phone_charger);
+                yield return FromAppliances(ApplianceType.Phone_charger);
             }
+        }
+
+        private Appliance FromAppliances(ApplianceType applianceType)
+        {
+            return All.Single(appliance => appliance.ApplianceType == applianceType);
+        }
+
+        public IEnumerable<Appliance> All
+        {
+            get { return ApplianceFactory.GetAppliances().Select(ratedAppliance => new Appliance(ratedAppliance, _clock)); }
         }
     }
 
@@ -59,19 +96,30 @@ namespace Wimicrogrid
         private readonly ApplianceType _type;
         private readonly Rating _rating;
         private double _usage;
+        private string _id;
 
         public Appliance(ApplianceType type, ITime clock, Rating rating, bool isApplianceOn = ApplianceState.Off)
         {
             On = isApplianceOn;
 
+            _id = Guid.NewGuid().ToString();
             _type = type;
             _rating = rating;
+
             clock.Ticked += UpdateUsage; 
         }
+
+        public Appliance(RatedAppliance ratedAppliance, ITime clock) : this(ratedAppliance.ApplianceType, clock, ratedAppliance.Rating)
+        { }
 
         private void UpdateUsage(TimeSpan duration)
         {
             if (On) _usage += new Consumption(duration, _rating).Amount;
+        }
+
+        public string Id
+        {
+            get { return _id; }    
         }
 
         public double Usage 
@@ -81,7 +129,12 @@ namespace Wimicrogrid
 
         public string Name
         {
-            get { return _type.ToString(); }
+            get { return _type.ToString().Replace("_", " "); }
+        }
+
+        public ApplianceType ApplianceType
+        {
+            get { return _type; }
         }
 
         public void SwitchOn()

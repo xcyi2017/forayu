@@ -18,7 +18,7 @@ namespace Wimicrogrid
             var anHour = new TimeSpan(1, 0, 0);
             var clock = new Clock(anHour);
             var television = new Appliance(ApplianceType.TV, clock, new Rating(3), ApplianceState.On);
-            var radio = new Appliance(ApplianceType.RADIO, clock, new Rating(1), ApplianceState.On);
+            var radio = new Appliance(ApplianceType.Radio, clock, new Rating(1), ApplianceState.On);
             var initialAppliances = new List<Appliance> {television};
 
             var household1 = new Household(FakeCommunity.Empty, initialAppliances, clock);
@@ -39,8 +39,8 @@ namespace Wimicrogrid
             var anHour = new TimeSpan(1, 0, 0);
             var clock = new Clock(anHour);
             var television = new Appliance(ApplianceType.TV, clock, new Rating(3));
-            var kettle = new Appliance(ApplianceType.KETTLE, clock, new Rating(1));
-            var radio = new Appliance(ApplianceType.RADIO, clock, new Rating(1));
+            var kettle = new Appliance(ApplianceType.Kettle, clock, new Rating(1));
+            var radio = new Appliance(ApplianceType.Radio, clock, new Rating(1));
             var initialAppliances = new List<Appliance> { television };
 
             var household1 = new Household(FakeCommunity.Empty, initialAppliances, clock);

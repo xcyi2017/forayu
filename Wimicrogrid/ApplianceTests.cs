@@ -11,7 +11,7 @@ namespace Wimicrogrid
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var rating = new Rating(2);
-            var appliance = new Appliance(ApplianceType.LED_BULB, clock, rating, ApplianceState.On);
+            var appliance = new Appliance(ApplianceType.LED_bulb, clock, rating, ApplianceState.On);
 
             clock.Tick();
 
@@ -23,7 +23,7 @@ namespace Wimicrogrid
         {
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var rating = new Rating(2);
-            var appliance = new Appliance(ApplianceType.LED_BULB, clock, rating);
+            var appliance = new Appliance(ApplianceType.LED_bulb, clock, rating);
 
             clock.Tick();
 
@@ -51,7 +51,7 @@ namespace Wimicrogrid
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var rating = new Rating(4);
 
-            var appliance = new Appliance(ApplianceType.RADIO, clock, rating);
+            var appliance = new Appliance(ApplianceType.Radio, clock, rating);
             clock.Tick();
             clock.Tick();
             clock.Tick();
@@ -65,7 +65,7 @@ namespace Wimicrogrid
             var clock = new Clock(new TimeSpan(1, 0, 0));
             var rating = new Rating(15);
 
-            var appliance = new Appliance(ApplianceType.WASHING_MACHINE, clock, rating); clock.Tick();
+            var appliance = new Appliance(ApplianceType.Washing_machine, clock, rating); clock.Tick();
             appliance.SwitchOn(); clock.Tick();
             appliance.SwitchOff(); clock.Tick();
             appliance.SwitchOn(); clock.Tick();
