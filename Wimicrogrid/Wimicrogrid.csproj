@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Appliance.cs" />
     <Compile Include="ApplianceState.cs" />
+    <Compile Include="AppliancesTests.cs" />
     <Compile Include="ApplianceTests.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="ClockTests.cs" />

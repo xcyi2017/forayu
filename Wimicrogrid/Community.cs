@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Wimicrogrid
 {
@@ -8,11 +7,10 @@ namespace Wimicrogrid
         public Community(int houses, ITime clock)
         {
             Households = new List<Household>();
-            var defaultAppliances = new Appliances(clock).Default.ToList();
 
             while (Households.Count < houses)
             {
-                Households.Add(new Household(Households.Count, defaultAppliances, clock));
+                Households.Add(new Household(Households.Count, new Appliances(clock).Default, clock));
             }
         }
 
