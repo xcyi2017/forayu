@@ -59,17 +59,17 @@ namespace Wimicrogrid
         {
             get
             {
-                yield return FromAppliances(ApplianceType.Incandescent_bulb);
-                yield return FromAppliances(ApplianceType.Radio);
-                yield return FromAppliances(ApplianceType.LED_bulb);
-                yield return FromAppliances(ApplianceType.LED_bulb);
-                yield return FromAppliances(ApplianceType.TV);
-                yield return FromAppliances(ApplianceType.Phone_charger);
-                yield return FromAppliances(ApplianceType.Phone_charger);
+                yield return MakeAppliance(ApplianceType.Incandescent_bulb);
+                yield return MakeAppliance(ApplianceType.Radio);
+                yield return MakeAppliance(ApplianceType.LED_bulb);
+                yield return MakeAppliance(ApplianceType.LED_bulb);
+                yield return MakeAppliance(ApplianceType.TV);
+                yield return MakeAppliance(ApplianceType.Phone_charger);
+                yield return MakeAppliance(ApplianceType.Phone_charger);
             }
         }
 
-        private Appliance FromAppliances(ApplianceType applianceType)
+        public Appliance MakeAppliance(ApplianceType applianceType)
         {
             return All.Single(appliance => appliance.ApplianceType == applianceType);
         }
@@ -88,6 +88,20 @@ namespace Wimicrogrid
         {
             Value = value;
         }
+    }
+
+    public static class ApplianceExtensions
+    {
+        public static int HouseholdIndex(this ApplianceDto dto)
+        {
+            return dto.Household - 1;
+        }
+    }
+
+    public class ApplianceDto
+    {
+        public ApplianceType Type { get; set; }
+        public int Household { get; set; }
     }
 
     public class Appliance
