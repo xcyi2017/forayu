@@ -51,5 +51,19 @@ namespace Wimicrogrid
 
             _appliances.Remove(applianceToRemove);
         }
+
+        public void SwitchOnOff(string id)
+        {
+            var applianceSwitch = _appliances.SingleOrDefault(appliance => appliance.Id == id);
+
+            if (applianceSwitch == null) return;
+
+            if (applianceSwitch.On)
+            {
+                applianceSwitch.SwitchOff();
+                return;
+            }
+            applianceSwitch.SwitchOn();
+        }
     }
 }
