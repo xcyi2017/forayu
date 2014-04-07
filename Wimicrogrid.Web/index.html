@@ -1,0 +1,91 @@
+﻿<html ng-app="wimicroGridApp">
+<head>
+    <title></title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="App/main.js"></script>
+    <script src="App/clockController.js"></script>
+    <script src="App/communityController.js"></script>
+    <script src="App/householdController.js"></script>
+    <style type="text/css">
+        body { font-family: calibri, verdana, Palatino}
+        .dashboard { width: 260px; float: left;}
+        .gameclock { width: 200px; margin: 20px; border-width: 1px; border-style: dashed; padding: 5px; }
+        .community { width: 200px; margin: 20px; border-width: 1px; border-style: dashed; padding: 5px; float: left;margin-left: 10px; }
+        .household { width: 540px; height: 720px; border: 1px; border-style: dashed; clear: both; float: left}
+        /*.appliance {margin: 10px; width: 60px; height: 60px }*/
+        .appliance { float: left; }
+        .outside { width: 640px; padding: 10px; border: 1px; border-style: dashed; float: left; height: 800px; }
+        .inside { width: 300px; height: 360px; border: 1px; border-style: dashed; padding: 20px;clear: both; float: left }
+        .inside span { margin-left: 20px; margin-bottom: 20px; line-height: 300%; border: burlywood; border-width: 1px; border-style: solid; padding: 5px; }
+        .switchedOn { background-color: burlywood; }
+        .household p { font-weight: bold; margin-left: 50px; }
+        .storeroom { border: 1px; border-style: dashed; float: left; margin-left: 10px }
+        .basement div { margin-left: 20px; margin-bottom: 10px; line-height: 150%; border: burlywood; border-width: 1px; border-style: solid; padding: 5px; }
+        .consumption { margin: 20px; width: 200px; border-width: 1px; border-style: dashed; padding: 5px; }
+        .parameters { margin: 20px; width: 240px; border-width: 1px; border-style: dashed; padding: 5px; }
+        .parameterTitle { }
+        .first { float: left }
+        .second { float: left }
+    </style>
+</head>
+    <body style="width: 90%; clear: both; float: left; border: 1px; border-style: dashed; padding: 20px;">
+        <div class="dashboard">
+            <div ng-controller="ClockController" class="gameclock">
+                    <div>{{clock.Day}}</div>
+                    <div>{{clock.Time}}</div>
+                    <br/>
+                    <button ng-click="startClock()">start</button>
+                    <button ng-click="stopClock()">stop</button>
+                </div>
+        
+                <div class="consumption">
+                    <div>
+                        <strong>Consumption</strong>
+                        <hr/>
+                    </div>
+                    <div>
+                        <span>Total: </span><br/>
+                        <input type="text" readonly="readonly"/> kWh<br/>
+                    </div>
+                    <div>
+                        <span>Historical Peak: </span>
+                        <input type="text" readonly="readonly"/> kWh
+                    </div>
+                </div>
+        
+                <div class="parameters">
+                    <div>
+                        <strong>System Parameters</strong>
+                        <hr/>
+                    </div>
+                    <div>
+                        <div class="parameterTitle">Capacity: </div>
+                        <input type="text"/> kWh
+                    </div>
+                    <div>
+                        <div class="parameterTitle">Houses: </div>
+                        <input type="text"/>
+                    </div>
+                    <div>
+                        <div class="parameterTitle">Cost of electricity: </div>
+                        <input type="text" maxlength="10"/> US$/kWh
+                    </div>
+                    <div>
+                        <div class="parameterTitle">NPC: </div>
+                        <input type="text" maxlength="10"/> US$
+                    </div>
+                </div>
+        </div>
+        
+        <div ng-controller="CommunityController" class="community">
+                <div ng-repeat="household in community.Households">
+                    <a href='#/household/{{household.Id}}'>House #{{household.Id}}</a>
+                    <br/>
+                </div>
+            </div>
+
+        <div ng-view class="outside"></div>
+
+    </body>
+</html>

@@ -1,0 +1,54 @@
+﻿<div class="household">
+    <p>House #{{household.Id}}</p>
+
+    <div ng-controller="HouseholdController">
+        <div>
+            
+            <div class="consumption" style="float: left">
+                <div>
+                    <strong>Household Consumption</strong>
+                    <hr/>
+                </div>
+                <div>
+                    <div>Consumption: </div>
+                    <input type="text" readonly="readonly" value="{{household.Usage.toFixed(3)}}"/> kWh
+                </div>
+                <div>
+                    <div>Cost: </div>
+                    <input type="text" readonly="readonly"/> US$
+                </div>
+            </div>
+
+            <div class="consumption" style="float: left">
+                <div>
+                    <strong>Power Usage</strong>
+                    <hr/>
+                </div>
+                <div>
+                    <span>Current power: </span><br/>
+                    <input type="text" readonly="readonly"/> kWh
+                </div>
+                <div>
+                    <span>Max power: </span>
+                    <input type="text" readonly="readonly"/> kWh
+                </div>
+            </div>
+
+        </div>
+
+        
+        <div class="inside" droppable>
+            <div class="appliance" ng-repeat="appliance in household.Appliances">
+                <span id="{{appliance.Id}}" title="{{appliance.ApplianceType}}" ng-class="{'switchedOn': appliance.On}" draggable>{{appliance.Name}}</span>
+            </div>
+                    
+        </div>
+        
+        <div class="storeroom" droppable>
+            <div class="basement" ng-repeat="appliance in household.MagicBasement">
+                <div id="{{appliance.Id}}" title="{{appliance.ApplianceType}}" draggable>{{appliance.Name}}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
