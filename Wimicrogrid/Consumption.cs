@@ -17,7 +17,7 @@ namespace Wimicrogrid
 
         public double Amount
         {
-            get { return _duration.Hours * _rating.Value; }
+            get { return (_duration.Hours + _duration.Minutes / 60.0) * _rating.Value; }
         }
     }
 }
