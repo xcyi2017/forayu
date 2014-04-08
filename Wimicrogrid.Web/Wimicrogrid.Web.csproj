@@ -387,7 +387,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wimicrogrid\Wimicrogrid\Wimicrogrid.csproj">
+    <ProjectReference Include="..\Wimicrogrid\Wimicrogrid.csproj">
       <Project>{a3cc5ea2-f9a5-4f93-a515-37efae77510e}</Project>
       <Name>Wimicrogrid</Name>
     </ProjectReference>
