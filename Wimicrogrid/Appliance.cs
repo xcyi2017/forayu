@@ -141,6 +141,11 @@ namespace Wimicrogrid
             get { return _totalUsage; }
         }
 
+        public double CurrentUsage
+        {
+            get { return _rating.Value * (On ? 1.0 : 0.0); }
+        }
+
         public string Name
         {
             get { return _type.ToString().Replace("_", " "); }
