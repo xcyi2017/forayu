@@ -26,6 +26,8 @@ namespace Wimicrogrid.Web {
                 return Game.Community.AsJson();
             };
 
+            Get["/api/consumption"] = response => Game.Community.Usage.AsJson();
+
             Get["/api/household/{id}"] = household =>
             {
                 if (Game.Community == null) 
