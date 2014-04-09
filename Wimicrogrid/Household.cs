@@ -7,11 +7,13 @@ namespace Wimicrogrid
     {
         private readonly Appliances _appliances;
         private readonly int _id;
+        private PowerUsage _usage;
 
         public Household(int communityHouseCount, IEnumerable<Appliance> appliances, ITime clock)
         {
             _id = ++communityHouseCount;
             _appliances = new Appliances(clock);
+            _usage = new PowerUsage();
 
             foreach (var appliance in appliances)
             {
@@ -23,10 +25,24 @@ namespace Wimicrogrid
         {
             get { return _id; }
         }
-        
+
+        public PowerUsage Usage
+        {
+            get
+            {
+                _usage = new PowerUsage(CurrentUsage, _usage);
+                return _usage;
+            }
+        }
+
         public double TotalUsage
         {
             get { return _appliances.Sum(appliance => appliance.TotalUsage); }
+        }
+
+        private double CurrentUsage
+        {
+            get { return _appliances.Sum(appliance => appliance.CurrentUsage); }
         }
 
         public Appliances Appliances
