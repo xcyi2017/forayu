@@ -30,12 +30,12 @@ namespace Wimicrogrid
         {
             get
             {
-                _usage = new PowerUsage(CurrentUsage, _usage);
+                _usage = new PowerUsage(TotalUsage, CurrentUsage, _usage);
                 return _usage;
             }
         }
 
-        public double TotalUsage
+        private double TotalUsage
         {
             get { return _appliances.Sum(appliance => appliance.TotalUsage); }
         }
