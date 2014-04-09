@@ -6,6 +6,7 @@
     <script src="App/main.js"></script>
     <script src="App/clockController.js"></script>
     <script src="App/communityController.js"></script>
+    <script src="App/communityConsumptionController.js"></script>
     <script src="App/householdController.js"></script>
     <style type="text/css">
         body { font-family: calibri, verdana, Palatino}
@@ -32,50 +33,55 @@
     <body style="width: 90%; clear: both; float: left; border: 1px; border-style: dashed; padding: 20px;">
         <div class="dashboard">
             <div ng-controller="ClockController" class="gameclock">
-                    <div>{{clock.Day}}</div>
-                    <div>{{clock.Time}}</div>
-                    <br/>
-                    <button ng-click="startClock()">start</button>
-                    <button ng-click="stopClock()">stop</button>
-                </div>
+                <div>{{clock.Day}}</div>
+                <div>{{clock.Time}}</div>
+                <br/>
+                <button ng-click="startClock()">start</button>
+                <button ng-click="stopClock()">stop</button>
+            </div>
         
-                <div class="consumption">
-                    <div>
-                        <strong>Consumption</strong>
-                        <hr/>
-                    </div>
-                    <div>
-                        <span>Total: </span><br/>
-                        <input type="text" readonly="readonly"/> kWh<br/>
-                    </div>
-                    <div>
-                        <span>Historical Peak: </span>
-                        <input type="text" readonly="readonly"/> kWh
-                    </div>
+
+            <div class="consumption" ng-controller="CommunityConsumptionController">
+                <div>
+                    <strong>Consumption</strong>
+                    <hr/>
                 </div>
+                <div>
+                    <span>Total: </span><br/>
+                    <input type="text" readonly="readonly" value="{{consumption.Total.toFixed(3)}}"/> kWh<br/>
+                </div>
+                <div>
+                    <span>Current: </span><br/>
+                    <input type="text" readonly="readonly" value="{{consumption.Current.toFixed(3)}}"/> kWh<br/>
+                </div>
+                <div>
+                    <span>Historical Peak: </span>
+                    <input type="text" readonly="readonly" value="{{consumption.Peak.toFixed(3)}}"/> kWh
+                </div>
+            </div>
         
-                <div class="parameters">
-                    <div>
-                        <strong>System Parameters</strong>
-                        <hr/>
-                    </div>
-                    <div>
-                        <div class="parameterTitle">Capacity: </div>
-                        <input type="text"/> kWh
-                    </div>
-                    <div>
-                        <div class="parameterTitle">Houses: </div>
-                        <input type="text"/>
-                    </div>
-                    <div>
-                        <div class="parameterTitle">Cost of electricity: </div>
-                        <input type="text" maxlength="10"/> US$/kWh
-                    </div>
-                    <div>
-                        <div class="parameterTitle">NPC: </div>
-                        <input type="text" maxlength="10"/> US$
-                    </div>
+            <div class="parameters">
+                <div>
+                    <strong>System Parameters</strong>
+                    <hr/>
                 </div>
+                <div>
+                    <div class="parameterTitle">Capacity: </div>
+                    <input type="text"/> kWh
+                </div>
+                <div>
+                    <div class="parameterTitle">Houses: </div>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <div class="parameterTitle">Cost of electricity: </div>
+                    <input type="text" maxlength="10"/> US$/kWh
+                </div>
+                <div>
+                    <div class="parameterTitle">NPC: </div>
+                    <input type="text" maxlength="10"/> US$
+                </div>
+            </div>
         </div>
         
         <div ng-controller="CommunityController" class="community">

@@ -76,6 +76,9 @@
     <Content Include="App\communityController.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\communityConsumptionController.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="App\householdController.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
