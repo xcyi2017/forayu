@@ -26,8 +26,11 @@ namespace Wimicrogrid.Web {
                 return Game.Community.AsJson();
             };
 
-            Get["/api/household/{id}"] = household => 
+            Get["/api/household/{id}"] = household =>
             {
+                if (Game.Community == null) 
+                    return HttpStatusCode.NotFound;
+
                 var selectedHousehold = (Household) Game.Community.Households[household.id - 1];
                 return selectedHousehold.AsJson();
             };
