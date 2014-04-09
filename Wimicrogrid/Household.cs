@@ -23,9 +23,10 @@ namespace Wimicrogrid
         {
             get { return _id; }
         }
-        public double Usage
+        
+        public double TotalUsage
         {
-            get {  return _appliances.Sum(appliance => appliance.Usage); }
+            get { return _appliances.Sum(appliance => appliance.TotalUsage); }
         }
 
         public Appliances Appliances

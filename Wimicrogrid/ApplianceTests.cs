@@ -15,7 +15,7 @@ namespace Wimicrogrid
 
             clock.Tick();
 
-            Assert.That(appliance.Usage, Is.GreaterThan(Consumption.None));
+            Assert.That(appliance.TotalUsage, Is.GreaterThan(Consumption.None));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Wimicrogrid
 
             clock.Tick();
 
-            Assert.That(appliance.Usage, Is.EqualTo(Consumption.None));
+            Assert.That(appliance.TotalUsage, Is.EqualTo(Consumption.None));
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Wimicrogrid
             appliance.SwitchOn();
             clock.Tick();
 
-            Assert.That(appliance.Usage, Is.EqualTo(new Consumption(durationOn, rating).Amount));
+            Assert.That(appliance.TotalUsage, Is.EqualTo(new Consumption(durationOn, rating).Amount));
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Wimicrogrid
             clock.Tick();
             clock.Tick();
 
-            Assert.That(appliance.Usage, Is.EqualTo(Consumption.None));
+            Assert.That(appliance.TotalUsage, Is.EqualTo(Consumption.None));
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Wimicrogrid
             appliance.SwitchOn(); clock.Tick();
             appliance.SwitchOff(); clock.Tick();
 
-            Assert.That(appliance.Usage, Is.EqualTo(new Consumption(new TimeSpan(0,2,0,0), rating).Amount));
+            Assert.That(appliance.TotalUsage, Is.EqualTo(new Consumption(new TimeSpan(0,2,0,0), rating).Amount));
         }
     }
 }

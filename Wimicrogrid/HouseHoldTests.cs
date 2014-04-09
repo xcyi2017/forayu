@@ -30,7 +30,7 @@ namespace Wimicrogrid
 
             clock.Tick();
 
-            Assert.That(household1.Usage, Is.GreaterThan(household2.Usage));
+            Assert.That(household1.TotalUsage, Is.GreaterThan(household2.TotalUsage));
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Wimicrogrid
             household1.AddAppliance(kettle);
             clock.Tick();
 
-            Assert.That(household1.Usage, Is.EqualTo(Consumption.None));
+            Assert.That(household1.TotalUsage, Is.EqualTo(Consumption.None));
         }
     }
 }

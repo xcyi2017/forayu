@@ -109,7 +109,7 @@ namespace Wimicrogrid
         public bool On { get; private set; }
         private readonly ApplianceType _type;
         private readonly Rating _rating;
-        private double _usage;
+        private double _totalUsage;
         private string _id;
 
         public Appliance(ApplianceType type, ITime clock, Rating rating, bool isApplianceOn = ApplianceState.Off)
@@ -128,7 +128,7 @@ namespace Wimicrogrid
 
         private void UpdateUsage(TimeSpan duration)
         {
-            if (On) _usage += new Consumption(duration, _rating).Amount;
+            if (On) _totalUsage += new Consumption(duration, _rating).Amount;
         }
 
         public string Id
@@ -136,9 +136,9 @@ namespace Wimicrogrid
             get { return _id; }    
         }
 
-        public double Usage 
+        public double TotalUsage 
         {
-            get { return _usage; }
+            get { return _totalUsage; }
         }
 
         public string Name
