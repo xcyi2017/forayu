@@ -71,6 +71,7 @@
     <Compile Include="HouseHoldTests.cs" />
     <Compile Include="ITime.cs" />
     <Compile Include="JsonExtensionMethods.cs" />
+    <Compile Include="PowerUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rating.cs" />
     <Compile Include="Tick.cs" />

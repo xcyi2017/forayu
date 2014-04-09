@@ -1,6 +1,6 @@
 ﻿<div class="household">
     <p>House #{{household.Id}}</p>
-
+    
     <div ng-controller="HouseholdController">
         <div>
             
@@ -26,11 +26,11 @@
                 </div>
                 <div>
                     <span>Current power: </span><br/>
-                    <input type="text" readonly="readonly"/> kWh
+                    <input type="text" readonly="readonly" value="{{household.Usage.Current.toFixed(3)}}"/> kWh
                 </div>
                 <div>
                     <span>Max power: </span>
-                    <input type="text" readonly="readonly"/> kWh
+                    <input type="text" readonly="readonly"  value="{{household.Usage.Peak.toFixed(3)}}"/> kWh
                 </div>
             </div>
 
