@@ -4,6 +4,11 @@ using Newtonsoft.Json;
 
 namespace Wimicrogrid.Web {
     public class GameModule : NancyModule {
+        public static class GameDefaults
+        {
+            public const int NumberOfHouses = 8;
+        }
+
         public GameModule()
         {
             Get["/api/time"] = response => JsonConvert.SerializeObject(Game.Clock);
@@ -22,7 +27,7 @@ namespace Wimicrogrid.Web {
 
             Get["/api/community"] = response =>
             {
-                Game.Community = new Community(3, Game.Clock);
+                Game.Community = new Community(GameDefaults.NumberOfHouses, Game.Clock);
                 return Game.Community.AsJson();
             };
 
