@@ -4,3 +4,4 @@ obj
 *.suo
 *ncrunch*
 *.user
+/Wimicrogrid.Web/Properties/PublishProfiles/*.pubxml
