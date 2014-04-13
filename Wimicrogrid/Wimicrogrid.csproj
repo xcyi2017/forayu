@@ -76,12 +76,8 @@
     <None Include="packages\repositories.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages\Moq.4.2.1402.2112\lib\net35\Moq.dll" />
-    <Content Include="packages\Moq.4.2.1402.2112\lib\net35\Moq.xml" />
     <Content Include="packages\Moq.4.2.1402.2112\lib\net40\Moq.dll" />
     <Content Include="packages\Moq.4.2.1402.2112\lib\net40\Moq.xml" />
-    <Content Include="packages\Moq.4.2.1402.2112\lib\sl4\Moq.Silverlight.dll" />
-    <Content Include="packages\Moq.4.2.1402.2112\lib\sl4\Moq.Silverlight.xml" />
     <Content Include="packages\NUnit.2.6.3\lib\nunit.framework.dll" />
     <Content Include="packages\NUnit.2.6.3\lib\nunit.framework.xml" />
     <Content Include="packages\NUnit.2.6.3\license.txt" />
