@@ -89,6 +89,7 @@
     <Content Include="App\clockController.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="echo.html" />
     <Content Include="household.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
