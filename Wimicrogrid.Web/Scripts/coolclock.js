@@ -15,7 +15,7 @@ window.CoolClock = function(options) {
 
 // Config contains some defaults, and clock skins
 CoolClock.config = {
-	tickDelay: 1000,
+	tickDelay: 500,
 	longTickDelay: 15000,
 	defaultRadius: 85,
 	renderRadius: 100,
@@ -255,7 +255,8 @@ CoolClock.prototype = {
 
 	// Check the time and display the clock
 	refreshDisplay: function() {
-	    this.render(CoolClock.gameTime.hours, CoolClock.gameTime.minutes, 0);
+		var bstHack = -1; //todo: replace this with something sensible?
+	    this.render(CoolClock.gameTime.hours + bstHack, CoolClock.gameTime.minutes, 0); 
 	},
 
 	// Set timeout to trigger a tick in the future
