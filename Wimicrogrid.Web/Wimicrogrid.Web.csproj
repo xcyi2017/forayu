@@ -146,9 +146,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\coolclock.js" />
+    <Content Include="Scripts\excanvas.js" />
+    <Content Include="Scripts\moreskins.js" />
     <Content Include="Views\household.html" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

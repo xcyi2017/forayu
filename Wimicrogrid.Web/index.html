@@ -8,6 +8,11 @@
     <script src="App/communityController.js"></script>
     <script src="App/communityConsumptionController.js"></script>
     <script src="App/householdController.js"></script>
+
+    <script src="Scripts/excanvas.js"></script>
+    <script src="Scripts/coolclock.js"></script>
+    <script src="Scripts/moreskins.js"></script>
+
     <style type="text/css">
         body { font-family: calibri, verdana, Palatino }
         input { text-align: right; }
@@ -31,16 +36,18 @@
         .second { float: left }
     </style>
 </head>
-    <body style="width: 90%; clear: both; float: left; border: 1px; border-style: dashed; padding: 20px;">
+    <body style="width: 90%; clear: both; float: left; border: 1px; border-style: dashed; padding: 20px;"  onload="CoolClock.findAndCreateClocks()">
         <div class="dashboard">
             <div ng-controller="ClockController" class="gameclock">
                 <div>{{clock.Day}}</div>
                 <div>{{clock.Time}}</div>
+                
+                <canvas id="clockid" style="display: block" class="CoolClock:swissRail::noSeconds"></canvas>
+
                 <br/>
                 <button ng-click="startClock()">start</button>
                 <button ng-click="stopClock()">stop</button>
             </div>
-        
 
             <div class="consumption" ng-controller="CommunityConsumptionController">
                 <div>
