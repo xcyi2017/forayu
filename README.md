@@ -1,4 +1,4 @@
 forayu
 ======
 
-hack-prototype for a microgrid simulation
+prototype for a microgrid simulation
