@@ -74,21 +74,23 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\communityController.js">
+    <Content Include="App\Controllers\communityController.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\communityConsumptionController.js">
+    <Content Include="App\Controllers\communityConsumptionController.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\householdController.js">
+    <Content Include="App\Controllers\householdController.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\Controllers\parametersController.js" />
     <Content Include="App\main.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App\clockController.js">
+    <Content Include="App\Controllers\clockController.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App\Services\ViewService.js" />
     <Content Include="index.html" />
     <Content Include="household.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

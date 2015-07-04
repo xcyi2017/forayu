@@ -1,11 +1,16 @@
-﻿function HouseholdController($scope, $http, $routeParams, $timeout)
+﻿function HouseholdController($scope, $http, $routeParams, $timeout, ViewService)
 {
     $scope.household = [];
 
     var updateHousehold = function () {
+        if (!$routeParams.id)
+            return;
+
         $http.get("/api/household/" + $routeParams.id)
             .success(function (data) {
                 $scope.household = data;
+
+                ViewService.show("household");
             })
             .error(function (data, status) {
                 $scope.status = status;

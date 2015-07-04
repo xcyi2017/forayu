@@ -1,6 +1,8 @@
-﻿function CommunityConsumptionController($scope, $http, $routeParams, $timeout)
+﻿function CommunityConsumptionController($rootScope, $scope, $http, $routeParams, $timeout, ViewService)
 {
     $scope.consumption = [];
+
+    $scope.view = ViewService;
 
     var updateConsumption = function () {
         $http.get("/api/consumption")
@@ -14,5 +16,7 @@
         $timeout(updateConsumption, 1000);
     };
 
-    updateConsumption();
+    $rootScope.$on('community', function() {
+        updateConsumption();
+    });
 }

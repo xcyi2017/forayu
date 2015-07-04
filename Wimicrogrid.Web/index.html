@@ -4,10 +4,13 @@
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-route.js"></script>
     <script src="App/main.js"></script>
-    <script src="App/clockController.js"></script>
-    <script src="App/communityController.js"></script>
-    <script src="App/communityConsumptionController.js"></script>
-    <script src="App/householdController.js"></script>
+    <script src="App/Controllers/clockController.js"></script>
+    <script src="App/Controllers/communityController.js"></script>
+    <script src="App/Controllers/communityConsumptionController.js"></script>
+    <script src="App/Controllers/householdController.js"></script>
+    <script src="App/Controllers/parametersController.js"></script>
+
+    <script src="App/Services/ViewService.js"></script>
 
     <script src="Scripts/excanvas.js"></script>
     <script src="Scripts/coolclock.js"></script>
@@ -49,55 +52,55 @@
                 <button ng-click="stopClock()">stop</button>
             </div>
 
-            <div class="consumption" ng-controller="CommunityConsumptionController">
+            <div class="consumption" ng-controller="CommunityConsumptionController" ng-hide="view.isShowing.household">
                 <div>
                     <strong>Consumption</strong>
-                    <hr/>
+                    <hr />
                 </div>
                 <div>
-                    <span>Total: </span><br/>
-                    <input type="text" readonly="readonly" value="{{consumption.Total.toFixed(3)}}"/> kWh<br/>
+                    <span>Total: </span><br />
+                    <input type="text" readonly="readonly" value="{{consumption.Total.toFixed(3)}}" /> kWh<br />
                 </div>
                 <div>
-                    <span>Current: </span><br/>
-                    <input type="text" readonly="readonly" value="{{consumption.Current.toFixed(3)}}"/> kWh<br/>
+                    <span>Current: </span><br />
+                    <input type="text" readonly="readonly" value="{{consumption.Current.toFixed(3)}}" /> kWh<br />
                 </div>
                 <div>
                     <span>Historical Peak: </span>
-                    <input type="text" readonly="readonly" value="{{consumption.Peak.toFixed(3)}}"/> kWh
+                    <input type="text" readonly="readonly" value="{{consumption.Peak.toFixed(3)}}" /> kWh
                 </div>
             </div>
         
-            <div class="parameters">
+            <div ng-controller="ParametersController" class="parameters" ng-hide="view.isShowing.household">
                 <div>
                     <strong>System Parameters</strong>
-                    <hr/>
+                    <hr />
                 </div>
                 <div>
                     <div class="parameterTitle">Capacity: </div>
-                    <input type="text"/> kWh
+                    <input type="text" /> kWh
                 </div>
                 <div>
                     <div class="parameterTitle">Houses: </div>
-                    <input type="text" value="8"/>
+                    <input type="text" value="8" />
                 </div>
                 <div>
                     <div class="parameterTitle">Cost of electricity: </div>
-                    <input type="text" maxlength="10"/> US$/kWh
+                    <input type="text" maxlength="10" /> US$/kWh
                 </div>
                 <div>
                     <div class="parameterTitle">NPC: </div>
-                    <input type="text" maxlength="10"/> US$
+                    <input type="text" maxlength="10" /> US$
                 </div>
             </div>
         </div>
         
-        <div ng-controller="CommunityController" class="community">
-                <div ng-repeat="household in community.Households">
-                    <a href='#/household/{{household.Id}}'>House #{{household.Id}}</a>
-                    <br/>
-                </div>
+        <div ng-controller="CommunityController" class="community" ng-hide="view.isShowing.household">
+            <div ng-repeat="household in community.Households">
+                <a href='#/household/{{household.Id}}'>House #{{household.Id}}</a>
+                <br />
             </div>
+        </div>
 
         <div ng-view class="outside"></div>
 
